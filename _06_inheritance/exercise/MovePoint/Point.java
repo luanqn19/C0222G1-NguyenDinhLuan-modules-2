@@ -1,15 +1,15 @@
-package _06_inheritance.exercise;
+package _06_inheritance.exercise.MovePoint;
 
-public class Point2D {
+public class Point {
     protected float x;
     protected float y;
 
-    public Point2D(){
+    public Point(){
         this.x = 0.0f;
         this.y = 0.0f;
     }
 
-    public Point2D(float x, float y){
+    public Point(float x, float y){
         this.x = x;
         this.y = y;
     }

@@ -1,6 +1,4 @@
-package _06_inheritance.exercise;
-
-import _06_inheritance.exercise.Point2D;
+package _06_inheritance.exercise.PointExercise;
 
 public class Point3D extends Point2D {
     private float z;

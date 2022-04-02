@@ -1,4 +1,4 @@
-package _06_inheritance.exercise;
+package _06_inheritance.exercise.CircleCylinder;
 
 public class Circle {
     protected double radius;

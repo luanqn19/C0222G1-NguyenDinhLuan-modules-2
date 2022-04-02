@@ -1,5 +1,5 @@
-package _06_inheritance.exercise;
-import _06_inheritance.exercise.Circle;
+package _06_inheritance.exercise.CircleCylinder;
+
 public class Cylinder extends Circle {
     private double height;
 
