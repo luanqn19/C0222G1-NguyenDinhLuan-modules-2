@@ -66,20 +66,4 @@ public class QuadraticEquation {
     public void setC(double value) {
         this.c = value;
     }
-
-    public static void main(String[] args) {
-        Scanner scn = new Scanner(System.in);
-        double a, b, c;
-        System.out.println("Input a: ");
-        a = scn.nextDouble();
-
-        System.out.println("Input b: ");
-        b = scn.nextDouble();
-
-        System.out.println("Input c: ");
-        c = scn.nextDouble();
-
-        QuadraticEquation mem = new QuadraticEquation(a, b, c);
-        mem.calculator();
-    }
 }
