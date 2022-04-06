@@ -9,7 +9,7 @@ public class Fan {
     private double radius;
     private String color;
 
-    public Fan() {
+    public Fan () {
         this.speed = this.SLOW;
         this.status = false;
         this.radius = 5;
@@ -17,46 +17,46 @@ public class Fan {
     }
 
     @Override
-    public String toString() {
+    public String toString () {
         String str = "";
         if (getStatus()) {
-            str = "Speed: " + (this.getSpeed() == this.SLOW ? 1 : (this.getSpeed() == this.MEDIUM ? 2 : 3))
-                    + "\n" + "Color: " + this.getColor() + "\n" + "Radius: " + this.getRadius() + "\n" + "fan is on";
+            str = "Speed: " + this.getSpeed() + "\n" + "Color: " + this.getColor() + "\n" +
+                    "Radius: " + this.getRadius() + "\n" + "fan is on";
         } else {
             str = "Radius: " + this.getRadius() + "\n" + "Color: " + this.getColor() + "\n" + "fan is off";
         }
         return str;
     }
 
-    public int getSpeed() {
+    public int getSpeed () {
         return this.speed;
     }
 
-    public void setSpeed(int value) {
+    public void setSpeed (int value) {
         this.speed = value;
     }
 
-    public boolean getStatus() {
+    public boolean getStatus () {
         return this.status;
     }
 
-    public void setStatus(boolean value) {
+    public void setStatus (boolean value) {
         this.status = value;
     }
 
-    public double getRadius() {
+    public double getRadius () {
         return this.radius;
     }
 
-    public void setRadius(double value) {
+    public void setRadius (double value) {
         this.radius = value;
     }
 
-    public String getColor() {
+    public String getColor () {
         return this.color;
     }
 
-    public void setColor(String value) {
+    public void setColor (String value) {
         this.color = value;
     }
 
