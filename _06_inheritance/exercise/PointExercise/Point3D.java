@@ -48,24 +48,14 @@ public class Point3D extends Point2D {
     }
 
     public void setXYZ(float x, float y, float z){
-        this.x = x;
-        this.y = y;
+        super.setXY(x, y);
         this.z = z;
     }
 
     @Override
     public String toString(){
-        String str = "X: " + this.getX() + "\n" +
-                "Y: " + this.getY() + "\n" +
+        String str = super.toString() +
                 "Z: " + this.getZ() + "\n";
         return str;
-    }
-
-    public static void main(String[] args) {
-        Point2D pt2D = new Point2D(10,20);
-        System.out.println("Point2D: " + "\n" + pt2D.toString());
-
-        Point3D pt3D = new Point3D(10,20,30);
-        System.out.println("Point3D: " + "\n" + pt3D.toString());
     }
 }

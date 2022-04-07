@@ -1,5 +1,7 @@
 package _06_inheritance.exercise.CircleCylinder;
 
+import _07_abstract_interface.exercise.interface_colorable.Rectangle;
+
 public class Circle {
     protected double radius;
     protected String color;
@@ -7,6 +9,10 @@ public class Circle {
     public Circle() {
         this.radius = 1.0;
         this.color = "red";
+    }
+
+    public Circle(double rad) {
+        this.radius = rad;
     }
 
     public double getArea() {

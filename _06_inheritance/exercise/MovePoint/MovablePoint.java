@@ -48,8 +48,7 @@ public class MovablePoint extends Point {
 
     @Override
     public String toString() {
-        return new String("x: " + this.getX() + "\n" +
-                "y: " + this.getY() + "\n" +
+        return new String(super.toString() +
                 "Speed: " + this.getXSpeed() + " : " + this.getYSpeed());
     }
 
@@ -57,17 +56,5 @@ public class MovablePoint extends Point {
         this.x += this.xSpeed;
         this.y += this.ySpeed;
         return this;
-    }
-
-    public static void main(String[] args) {
-        Point pnt = new Point(10,20);
-        System.out.println("Pnt: " + "\n" + pnt.toString() + "\n");
-
-        MovablePoint mvPnt = new MovablePoint(10, 20, 30, 40);
-        System.out.println("mvPnt before: " + "\n" + mvPnt.toString() + "\n");
-
-        mvPnt.move();
-
-        System.out.println("mvPnt after move: " + "\n" + mvPnt.toString() + "\n");
     }
 }

@@ -47,23 +47,8 @@ public class Cylinder extends Circle {
     }
 
     public String toString(){
-        String str = "Radius: " + this.getRadius() + "\n" +
-                "Color: " + this.getColor() + "\n" +
-                "Area: " + this.getArea() + "\n" +
+        String str = super.toString() +
                 "Volume: " + getVolume() + "\n";
         return str;
-    }
-
-    public static void main(String[] args) {
-        Circle cir = new Circle();
-        cir.setRadius(5.0);
-        cir.setColor("White");
-        System.out.println("Circle: " + "\n" + cir.toString());
-
-        Cylinder cyl = new Cylinder();
-        cyl.setRadius(6.0);
-        cyl.setColor("blue");
-        cyl.setHeight(3.0);
-        System.out.println("Cylinder: " + "\n" + cyl.toString());
     }
 }
