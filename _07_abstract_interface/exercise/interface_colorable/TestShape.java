@@ -8,8 +8,8 @@ import _07_abstract_interface.exercise.interface_colorable.Rectangle;
 import java.util.Arrays;
 
 public class TestShape {
-    public void callFunction(Rectangle rec, Square sqr, Circle cir, String name){
-        switch (name){
+    public static void callFunction (Rectangle rec , Square sqr , Circle cir , String name) {
+        switch ( name ) {
             case "Rectangle":
                 System.out.println("Rectangle area: " + rec.getArea());
                 break;
@@ -22,20 +22,20 @@ public class TestShape {
         }
     }
 
-    public static void main(String[] args) {
-        Rectangle rec = new Rectangle(5.0, 5.0, "blue");
-        Square sqr = new Square(5.0, "red");
-        Circle cir = new Circle(5.0, "green");
+    public static void main (String[] args) {
+        Rectangle rec = new Rectangle(5.0 , 5.0 , "blue");
+        Square sqr = new Square(5.0 , "red");
+        Circle cir = new Circle(5.0 , "green");
 
-        TestShape[] test = {rec, sqr, cir};
+        Shape[] arr = {rec , sqr , cir};
 
-        for (TestShape testShape : test) {
+        for (Shape testShape : arr) {
             if (testShape instanceof Colorable) {
                 ((Colorable) testShape).howToColor();
             } else {
                 String name = testShape.getClass().toString();
                 String nameClass = name.substring(name.lastIndexOf(".") + 1);
-                testShape.callFunction(rec, sqr, cir, nameClass);
+                callFunction(rec , sqr , cir , nameClass);
             }
         }
     }

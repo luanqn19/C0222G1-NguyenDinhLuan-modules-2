@@ -2,9 +2,8 @@ package _07_abstract_interface.exercise.interface_colorable;
 
 import _07_abstract_interface.exercise.interface_colorable.Colorable;
 import _07_abstract_interface.exercise.interface_colorable.TestShape;
-public class Square extends TestShape implements Colorable {
+public class Square extends Shape implements Colorable {
     private double edge;
-    private String color;
 
     public Square(){
         this.edge = 1.0;
@@ -13,14 +12,6 @@ public class Square extends TestShape implements Colorable {
 
     public Square(double edge, String color){
         this.edge = edge;
-        this.color = color;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
         this.color = color;
     }
 

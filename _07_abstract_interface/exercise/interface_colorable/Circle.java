@@ -1,7 +1,7 @@
 package _07_abstract_interface.exercise.interface_colorable;
 
 import _07_abstract_interface.exercise.interface_colorable.TestShape;
-public class Circle extends TestShape{
+public class Circle extends Shape{
     private double radius;
     private String color;
 
@@ -12,14 +12,6 @@ public class Circle extends TestShape{
 
     public Circle(double rad, String color){
         this.radius = rad;
-        this.color = color;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
         this.color = color;
     }
 

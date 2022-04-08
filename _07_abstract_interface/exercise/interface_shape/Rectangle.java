@@ -1,4 +1,4 @@
-package _07_abstract_interface.exercise.interface_class;
+package _07_abstract_interface.exercise.interface_shape;
 
 public class Rectangle implements Resizeable{
     private double width;

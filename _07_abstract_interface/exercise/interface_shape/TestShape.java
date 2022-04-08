@@ -1,9 +1,4 @@
-package _07_abstract_interface.exercise.interface_class;
-
-import _07_abstract_interface.exercise.interface_class.Resizeable;
-import _07_abstract_interface.exercise.interface_class.Square;
-import _07_abstract_interface.exercise.interface_class.Rectangle;
-import _07_abstract_interface.exercise.interface_class.Circle;
+package _07_abstract_interface.exercise.interface_shape;
 
 public class TestShape {
     public static void main(String[] args) {
