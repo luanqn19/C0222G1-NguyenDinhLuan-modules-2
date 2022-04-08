@@ -1,4 +1,4 @@
-package _06_inheritance.exercise.MovePoint;
+package _06_inheritance.exercise._move_point;
 
 public class MovablePoint extends Point {
     private float xSpeed;

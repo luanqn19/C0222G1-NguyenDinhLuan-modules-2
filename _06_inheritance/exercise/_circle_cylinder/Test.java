@@ -1,4 +1,4 @@
-package _06_inheritance.exercise.CircleCylinder;
+package _06_inheritance.exercise._circle_cylinder;
 
 public class Test {
     public static void main(String[] args) {

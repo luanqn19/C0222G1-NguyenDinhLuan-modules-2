@@ -1,4 +1,4 @@
-package _06_inheritance.exercise.PointExercise;
+package _06_inheritance.exercise._point;
 
 public class Test {
     public static void main(String[] args) {

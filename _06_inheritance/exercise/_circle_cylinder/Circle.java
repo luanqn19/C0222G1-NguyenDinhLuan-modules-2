@@ -1,6 +1,4 @@
-package _06_inheritance.exercise.CircleCylinder;
-
-import _07_abstract_interface.exercise.interface_colorable.Rectangle;
+package _06_inheritance.exercise._circle_cylinder;
 
 public class Circle {
     protected double radius;
