@@ -1,12 +1,9 @@
 package _11_stack_queue.exercise;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 public class ListTreeMap {
-    public static void showMap (TreeMap<Character, Integer> map) {
+    public static void showMap (TreeMap<String, Integer> map) {
         // Sử dụng Set
 //        Set<Character> keySet = map.keySet();
 //        for (Character key : keySet) {
@@ -14,7 +11,7 @@ public class ListTreeMap {
 //        }
 
         // Sử dụng Map.Entry interface
-        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue());
         }
 
@@ -25,28 +22,27 @@ public class ListTreeMap {
 //        }
     }
 
-    public static void startCount (TreeMap<Character, Integer> map , char c) {
+    public static void startCount (TreeMap<String, Integer> map , String s) {
         int count = 0;
-        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-            if (entry.getKey() == c) {
-                map.put(c , entry.getValue() + 1);
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getKey().equals(s)) {
+                map.put(s , entry.getValue() + 1);
             }
         }
     }
 
     public static void main (String[] args) {
-        String str = "Lorem ipsum dolor sit amet, consectetur adipiscing elit." +
-                " Cras odio nisi, tempor non elementum ut, sollicitudin sit amet tellus." +
-                " Ut vitae egestas mi, in rhoncus nisl. Nullam in elit felis." +
-                " Proin erat libero, interdum nec neque eget, eleifend pulvinar justo.";
+        String str = "Lorem ipsum dolor sit amet consectetur adipiscing elit " +
+                "Cras odio nisi tempor non elementum ut sollicitudin sit amet tellus " +
+                "Ut vitae egestas mi in rhoncus nisl Nullam in elit felis " +
+                "Proin erat libero interdum nec neque eget eleifend pulvinar justo";
         str = str.toLowerCase();
-        TreeMap<Character, Integer> list = new TreeMap<Character, Integer>();
+        String[] data = str.split("\\s");
+        TreeMap<String, Integer> list = new TreeMap<String, Integer>();
         // Get key
-        for (int i = 0 ; i < str.length() ; i++) {
-            if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z') {
-                if (list.isEmpty() || ! list.containsKey(str.charAt(i))) {
-                    list.put(str.charAt(i) , 0);
-                }
+        for (String w : data) {
+            if (list.isEmpty() || ! list.containsKey(w)) {
+                list.put(w , 0);
             }
         }
 
@@ -54,10 +50,11 @@ public class ListTreeMap {
         showMap(list);
 
         //Count Char appear in map
-        for (int i = 0 ; i < str.length() ; i++) {
-            startCount(list, str.charAt(i));
+        for (int i = 0 ; i < data.length ; i++) {
+            startCount(list, data[i]);
         }
 
+        System.out.println();
         System.out.println("Map after count: ");
         showMap(list);
     }
