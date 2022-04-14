@@ -2,8 +2,8 @@ package _11_stack_queue.exercise;
 
 import java.util.*;
 
-public class ListTreeMap {
-    public static void showMap (TreeMap<String, Integer> map) {
+public class ListTreeMapWord {
+    public static void showMap (TreeMap<?, Integer> map) {
         // Sử dụng Set
 //        Set<Character> keySet = map.keySet();
 //        for (Character key : keySet) {
@@ -11,7 +11,7 @@ public class ListTreeMap {
 //        }
 
         // Sử dụng Map.Entry interface
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+        for (Map.Entry<?, Integer> entry : map.entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue());
         }
 
@@ -22,8 +22,7 @@ public class ListTreeMap {
 //        }
     }
 
-    public static void startCount (TreeMap<String, Integer> map , String s) {
-        int count = 0;
+    public static void startCountWord (TreeMap<String, Integer> map , String s) {
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
             if (entry.getKey().equals(s)) {
                 map.put(s , entry.getValue() + 1);
@@ -37,25 +36,26 @@ public class ListTreeMap {
                 "Ut vitae egestas mi in rhoncus nisl Nullam in elit felis " +
                 "Proin erat libero interdum nec neque eget eleifend pulvinar justo";
         str = str.toLowerCase();
-        String[] data = str.split("\\s");
-        TreeMap<String, Integer> list = new TreeMap<String, Integer>();
-        // Get key
-        for (String w : data) {
-            if (list.isEmpty() || ! list.containsKey(w)) {
-                list.put(w , 0);
+
+        String[] dataWord = str.split("\\s");
+        TreeMap<String, Integer> listWord = new TreeMap<String, Integer>();
+        // Get word
+        for (String w : dataWord) {
+            if (listWord.isEmpty() || ! listWord.containsKey(w)) {
+                listWord.put(w , 0);
             }
         }
 
-        System.out.println("Map: ");
-        showMap(list);
+        System.out.println("Map word: ");
+        showMap(listWord);
 
-        //Count Char appear in map
-        for (int i = 0 ; i < data.length ; i++) {
-            startCount(list, data[i]);
+        //Count word appear in map
+        for (String s : dataWord) {
+            startCountWord(listWord , s);
         }
 
         System.out.println();
-        System.out.println("Map after count: ");
-        showMap(list);
+        System.out.println("Map word count: ");
+        showMap(listWord);
     }
 }
