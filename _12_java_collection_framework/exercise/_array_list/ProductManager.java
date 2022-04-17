@@ -49,6 +49,7 @@ public class ProductManager implements Comparator<Product> {
                 datum.setAmount(Integer.parseInt(scn.nextLine()));
                 System.out.print("Nhập giá: ");
                 datum.setPrice(Integer.parseInt(scn.nextLine()));
+                break;
             }
         }
         if (! flag) System.out.println("ID không tìm thấy!");
@@ -65,6 +66,7 @@ public class ProductManager implements Comparator<Product> {
                 flag = true;
                 data.remove(i);
                 System.out.println("Đã xoá sản phẩm!");
+                break;
             }
         }
         if (! flag) System.out.println("ID không tìm thấy!");
@@ -80,13 +82,13 @@ public class ProductManager implements Comparator<Product> {
 
     public void searchProduct () {
         boolean flag = false;
-        String name;
-        System.out.print("Nhập id: ");
-        name = scn.nextLine();
-        System.out.println("-------Sản phẩm-------");
+        System.out.print("Nhập tên sản phẩm: ");
+        String name = scn.nextLine();
+
         for (Product datum : data) {
-            if (datum.getNameProduct().equals(name)) {
+            if (datum.getNameProduct().contains(name)) {
                 flag = true;
+                System.out.println("-------Sản phẩm-------");
                 datum.display();
                 System.out.println("----------------------");
             }

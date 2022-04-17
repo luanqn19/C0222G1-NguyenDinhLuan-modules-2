@@ -85,13 +85,13 @@ public class ProductManager implements Comparator<Product> {
 
     public void searchProduct () {
         boolean flag = false;
-        String name;
-        System.out.print("Nhập id: ");
-        name = scn.nextLine();
-        System.out.println("-------Sản phẩm-------");
+        System.out.print("Nhập tên sản phẩm: ");
+        String name = scn.nextLine();
+
         for (Product datum : data) {
-            if (datum.getNameProduct().equals(name)) {
+            if (datum.getNameProduct().contains(name)) {
                 flag = true;
+                System.out.println("-------Sản phẩm-------");
                 datum.display();
                 System.out.println("----------------------");
             }
