@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class StackList {
+public class ReverseElementInStack {
     public static void showStack(Stack<?> list, int n){
         for (int i = 0 ; i < n ; i++) {
             System.out.print(list.get(i) + "\t");
