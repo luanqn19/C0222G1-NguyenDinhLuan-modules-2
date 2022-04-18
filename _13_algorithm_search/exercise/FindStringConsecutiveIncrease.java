@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FindStringConsecutiveIncrease {
-    public static StringBuilder searchCharacter (List<Character> list) {
+    public static StringBuilder solveAlgorithm (List<Character> list) {
         StringBuilder temp = new StringBuilder();
         int max = (int) list.get(0);
         temp.append(list.get(0));
@@ -23,14 +23,14 @@ public class FindStringConsecutiveIncrease {
 
     public static void main (String[] args) {
 
-        StringBuilder str = new StringBuilder("abcabcdgabmnsxydef");
+        StringBuilder str = new StringBuilder("abcabcdgabmnsxyd");
         Character[] c = new Character[str.length()];
         List<Character> list = new ArrayList<>();
         for (int i = 0 ; i < str.length() ; i++) {
             c[i] = str.charAt(i);
             list.add(str.charAt(i));
         }
-        str = searchCharacter(list);
+        str = solveAlgorithm(list);
         System.out.printf("String sort %s" , str);
     }
 }

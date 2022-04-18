@@ -3,7 +3,7 @@ package _13_algorithm_search.exercise;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class BinarySearch {
+public class BinarySearchUseRecursive {
     public static int binarySearch (int[] arr , int low , int high , int value) {
         int mid;
         while (low <= high) {
