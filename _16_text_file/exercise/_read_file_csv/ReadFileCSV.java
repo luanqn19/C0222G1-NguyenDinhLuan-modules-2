@@ -31,12 +31,14 @@ public class ReadFileCSV {
                 }
             }
 
+            Country country;
             for (String[] result : results) {
                 String code = result[1].substring(1 , result[1].lastIndexOf("\""));
                 String name = result[2].substring(1 , result[2].lastIndexOf("\""));
-                Country country = new Country(Integer.parseInt(result[0]) , code , name);
+                country = new Country(Integer.parseInt(result[0]) , code , name);
                 list.add(country);
             }
+
         } catch (FileNotFoundException ex) {
             ex.getMessage();
         } catch (IOException ex) {
