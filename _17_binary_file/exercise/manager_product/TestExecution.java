@@ -15,7 +15,6 @@ public class TestExecution {
             System.out.println("4. Hiển thị danh sách sản phẩm");
             System.out.println("5. Tìm kiếm sản phẩm theo tên");
             System.out.println("6. Sắp xếp sản phẩm");
-            System.out.println("7. Ghi file sản phẩm");
             System.out.println("0. Thoát");
             System.out.print("Your choose: ");
             choose = scn.nextInt();
@@ -39,10 +38,10 @@ public class TestExecution {
                 case 6:
                     mng.sortListProduct();
                     break;
-                case 7:
-                    mng.writeBinaryFile();
+                case 0:
+                    System.exit(0);
                     break;
             }
-        } while (choose != 0);
+        } while (true);
     }
 }

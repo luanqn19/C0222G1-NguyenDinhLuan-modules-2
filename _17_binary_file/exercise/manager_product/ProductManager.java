@@ -1,30 +1,16 @@
 package _17_binary_file.exercise.manager_product;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class ProductManager implements Comparator<Product> {
     private static final String FILE_PATH = "src\\_17_binary_file\\exercise\\manager_product\\product-data.dat";
     private static final Scanner scn = new Scanner(System.in);
-    ArrayList<Product> data = new ArrayList<>();
+    private List<Product> data = new ArrayList<>();
 
     public ProductManager (){
-        try {
-            File file = new File(FILE_PATH);
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-            String line = "";
-            if ((line = bufferedReader.readLine()) != null)
-                readBinaryFile(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //Đọc dữ liệu khi khởi tạo
+        this.data = this.readBinaryFile(FILE_PATH);
     }
 
     public boolean isSameId (String id) {
@@ -37,7 +23,7 @@ public class ProductManager implements Comparator<Product> {
     }
 
     public void writeBinaryFile () {
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(FILE_PATH))) {
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(FILE_PATH, false))) {
 
             objectOutputStream.writeObject(new Date()); //Date creat
             objectOutputStream.writeUTF("Product Data"); //Name data
@@ -54,7 +40,8 @@ public class ProductManager implements Comparator<Product> {
         System.out.println("Success!");
     }
 
-    public void readBinaryFile(File file){
+    public List<Product> readBinaryFile(String file){
+        List<Product> tempData = new ArrayList<>();
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file))) {
             Date date = (Date) objectInputStream.readObject();
             String info = objectInputStream.readUTF();
@@ -64,18 +51,26 @@ public class ProductManager implements Comparator<Product> {
             System.out.println(info);
             System.out.println();
 
+            Product product;
             for (int i = 0 ; i < productCount ; i++) {
-                Product product = (Product) objectInputStream.readObject();
-                data.add(product);
+                product = (Product) objectInputStream.readObject();
+                tempData.add(product);
             }
+            
+            System.out.println("Success!");
+            return tempData;
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e){
             e.getException();
         }
+
+        return null;
     }
 
     public void addProduct () {
+        //Đọc dữ liệu từ file trước khi thêm mới
+        this.data = this.readBinaryFile(FILE_PATH);
         String name, id;
         int amount, price;
 
@@ -92,9 +87,12 @@ public class ProductManager implements Comparator<Product> {
 
         Product p = new Product(id , name , amount , price);
         data.add(p);
+        this.writeBinaryFile();
     }
 
     public void editProduct () {
+        //Đọc dữ liệu từ file trước khi sửa chữa
+        this.data = this.readBinaryFile(FILE_PATH);
         boolean flag = false;
         String id;
         System.out.print("Nhập id: ");
@@ -116,6 +114,8 @@ public class ProductManager implements Comparator<Product> {
     }
 
     public void deleteProduct () {
+        //Đọc dữ liệu từ file trước khi xoá
+        this.data = this.readBinaryFile(FILE_PATH);
         boolean flag = false;
         String id;
         System.out.print("Nhập id: ");
@@ -133,6 +133,8 @@ public class ProductManager implements Comparator<Product> {
     }
 
     public void displayList () {
+        //Đọc dữ liệu từ file trước khi hiển thị danh sách
+        this.data = this.readBinaryFile(FILE_PATH);
         System.out.println("-------Danh sách sản phẩm-------");
         for (Product datum : data) {
             datum.display();
@@ -141,6 +143,8 @@ public class ProductManager implements Comparator<Product> {
     }
 
     public void searchProduct () {
+        //Đọc dữ liệu từ file trước khi tìm kiếm
+        this.data = this.readBinaryFile(FILE_PATH);
         boolean flag = false;
         System.out.print("Nhập tên sản phẩm: ");
         String name = scn.nextLine();
@@ -157,6 +161,7 @@ public class ProductManager implements Comparator<Product> {
     }
 
     public void sortListProduct () {
+        this.data = this.readBinaryFile(FILE_PATH);
         int choose;
         System.out.println("Lựa chọn sắp xếp: ");
         System.out.println("1. Sắp xếp tăng theo giá");
