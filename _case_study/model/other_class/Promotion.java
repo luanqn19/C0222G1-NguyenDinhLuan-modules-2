@@ -1,22 +1,27 @@
 package _case_study.model.other_class;
 
+import _case_study.utils.BookingComparator;
+
 import java.util.Scanner;
 
-public class Promotion {
+public class Promotion implements Comparable<Promotion>{
     private static final Scanner scn = new Scanner(System.in);
     private int yearOfUse;
-    private Booking booking;
     private String voucher;
 
+    //Contract profile
+    private Contract contract;
+
     public Promotion () {
-        this.booking = null;
+        this.contract = null;
         this.yearOfUse = 0;
         this.voucher = "";
     }
 
-    public Promotion (int yearOfUse , Booking booking) {
+    public Promotion (Contract contract , int yearOfUse , String voucher) {
+        this.contract = contract;
         this.yearOfUse = yearOfUse;
-        this.booking = booking;
+        this.voucher = voucher;
     }
 
     public String getVoucher () {
@@ -27,19 +32,18 @@ public class Promotion {
         this.voucher = voucher;
     }
 
-    public void inputDate(Booking booking){
+    public void inputData (Contract contract) {
         boolean flag;
         do {
             flag = true;
             try {
-                this.setBooking(booking);
+                this.setContract(contract);
                 System.out.print("Nhập số năm sử dụng: ");
                 this.setYearOfUse(Integer.parseInt(scn.nextLine()));
-            }catch (NumberFormatException e){
-                System.err.println("Dữ liệu không hợp lệ");
+            } catch (NumberFormatException e) {
                 flag = false;
             }
-        }while (!flag || this.getYearOfUse() < 0);
+        } while (! flag || this.getYearOfUse() < 0);
     }
 
     public int getYearOfUse () {
@@ -50,17 +54,25 @@ public class Promotion {
         this.yearOfUse = yearOfUse;
     }
 
-    public Booking getBooking () {
-        return booking;
+    public Contract getContract () {
+        return contract;
     }
 
-    public void setBooking (Booking booking) {
-        this.booking = booking;
+    public void setContract (Contract contract) {
+        this.contract = contract;
     }
 
     @Override
     public String toString () {
         return "Năm sử dụng: " + this.getYearOfUse() + "\n" +
-                "Booking: \n" + this.getBooking();
+                "Voucher: " + this.getVoucher() + "\n" +
+                "Contract info: \n" + this.getContract();
+    }
+
+    @Override
+    public int compareTo (Promotion o) {
+        Booking booking1 = this.getContract().getBooking();
+        Booking booking2 = o.getContract().getBooking();
+        return new BookingComparator().compare(booking1, booking2);
     }
 }

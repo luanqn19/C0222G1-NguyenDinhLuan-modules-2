@@ -1,6 +1,5 @@
 package _case_study.model.person_class;
 
-import _case_study.utils.FormatString;
 
 public class Employee extends Person {
     private static final String[] DATA_ACADEMIC_LEVEL = {"Intermediate", "Colleges", "University", "After University"};
@@ -64,17 +63,17 @@ public class Employee extends Person {
             }
         } while (!flag);
 
-        switch (scn.nextLine()){
-            case "1":
+        switch (choose){
+            case 1:
                 this.setAcademicLevel(DATA_ACADEMIC_LEVEL[0]);
                 break;
-            case "2":
+            case 2:
                 this.setAcademicLevel(DATA_ACADEMIC_LEVEL[1]);
                 break;
-            case "3":
+            case 3:
                 this.setAcademicLevel(DATA_ACADEMIC_LEVEL[2]);
                 break;
-            case "4":
+            case 4:
                 this.setAcademicLevel(DATA_ACADEMIC_LEVEL[3]);
                 break;
         }

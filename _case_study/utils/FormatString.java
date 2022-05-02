@@ -16,19 +16,19 @@ public class FormatString {
     }
 
     public boolean formatPhone (String str) {
-        final String VALID_PHONE = "\"^([+]{1})(\\d{1,2})([0]{1}\\d{9})$\"gm";
+        final String VALID_PHONE = "^([+]{1})(\\d{1,2})([0]{1}\\d{9})$";
         Pattern pattern = Pattern.compile(VALID_PHONE);
         return pattern.matcher(str).matches();
     }
 
     public boolean formatEmail (String str) {
-        final String VALID_EMAIL = "\"^(\\w+)[@]{1}(\\w+)(\\.?\\w+)+$\"gm";
+        final String VALID_EMAIL = "^(\\w+)[@]{1}(\\w+)(\\.?\\w+)+$";
         Pattern pattern = Pattern.compile(VALID_EMAIL);
         return pattern.matcher(str).matches();
     }
 
     public boolean formatGender (String str) {
-        final String VALID_GENDER = "\"^(Nam|Nu){1}$\"gm";
+        final String VALID_GENDER = "^(Nam|Nu){1}$";
         Pattern pattern = Pattern.compile(VALID_GENDER);
         return pattern.matcher(str).matches();
     }

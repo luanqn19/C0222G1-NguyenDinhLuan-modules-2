@@ -1,17 +1,20 @@
 package _case_study.model.other_class;
 
+import _case_study.controller.FuramaController;
 import _case_study.model.facility_class.Facility;
 import _case_study.model.person_class.Customer;
 import _case_study.services.implements_interface.CustomerServiceImpl;
 import _case_study.services.implements_interface.FacilityServiceImpl;
 import _case_study.utils.FormatString;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class Booking {
     private static final Scanner scn = new Scanner(System.in);
     private String dateStart, dateEnd;
     private String idBooking;
+    private boolean isCreateContrat; // Trạng thái đã tạo hợp đồng
 
     //Customer
     private Customer customer;
@@ -25,38 +28,17 @@ public class Booking {
         this.idBooking = "";
         this.customer = null;
         this.facility = null;
+        this.isCreateContrat = false;
     }
 
     public Booking (String dateStart , String dateEnd ,
-                    String idBooking , Customer customer , Facility facility) {
+                    String idBooking , Customer customer , Facility facility, boolean isCreateContrat) {
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.idBooking = idBooking;
         this.customer = customer;
         this.facility = facility;
-    }
-
-    public void inputData (CustomerServiceImpl customerService ,
-                           FacilityServiceImpl facilityService) {
-        //Chọn thông tin khách hàng
-        this.setCustomer(chooseCustomer(customerService));
-
-        //Chọn thông tin cơ sở vật chất
-        this.setFacility(chooseFacility(facilityService));
-
-        //Nhập ngày Booking
-        do {
-            System.out.println("Định dạng ngày dd/mm/yyyy");
-            System.out.print("Nhập ngày booking: ");
-            this.setDateStart(scn.nextLine());
-        } while (! new FormatString().dateFormat(this.getDateStart()));
-
-        //Nhập ngày trả
-        do {
-            System.out.println("Định dạng ngày dd/mm/yyyy");
-            System.out.print("Nhập ngày trả: ");
-            this.setDateEnd(scn.nextLine());
-        } while (! new FormatString().dateFormat(this.getDateEnd()));
+        this.isCreateContrat = isCreateContrat;
     }
 
     public Customer chooseCustomer (CustomerServiceImpl customerService) {
@@ -74,15 +56,54 @@ public class Booking {
 
     public Facility chooseFacility (FacilityServiceImpl facilityService) {
         // Hiển thị danh sách cơ sở vậy chất
-        facilityService.displayList();
+        FuramaController.facilityService.displayList();
         String id;
 
+        boolean flag;
         do {
+            flag = true;
             System.out.println("Nhập ID Facility: ");
             id = scn.nextLine();
-        } while (facilityService.getFacility(id) == null);
+            for (Map.Entry<Facility, Integer> entry : FuramaController.facilityService.getDataFacility().entrySet()) {
+                if (FuramaController.facilityService.getFacility(id) == null ||
+                        (FuramaController.facilityService.getFacility(id) != null && entry.getValue() >= 5)) {
+                    flag = false;
+                }
+            }
 
-        return facilityService.getFacility(id);
+        } while (! flag);
+
+        return FuramaController.facilityService.getFacility(id);
+    }
+
+    public void inputData () {
+        //Chọn thông tin khách hàng
+        this.setCustomer(chooseCustomer(FuramaController.customerService));
+
+        //Chọn thông tin cơ sở vật chất
+        this.setFacility(chooseFacility(FuramaController.facilityService));
+
+        //Nhập ngày Booking
+        do {
+            System.out.println("Định dạng ngày dd/mm/yyyy");
+            System.out.print("Nhập ngày booking: ");
+            this.setDateStart(scn.nextLine());
+        } while (! new FormatString().dateFormat(this.getDateStart()));
+
+        //Nhập ngày trả
+        do {
+            System.out.println("Định dạng ngày dd/mm/yyyy");
+            System.out.print("Nhập ngày trả: ");
+            this.setDateEnd(scn.nextLine());
+        } while (! new FormatString().dateFormat(this.getDateEnd()));
+    }
+
+    public boolean isCreateContrat () {
+        return isCreateContrat;
+    }
+
+    public void setCreateContrat (boolean createContrat) {
+        isCreateContrat = createContrat;
     }
 
     public String getDateStart () {
@@ -130,24 +151,8 @@ public class Booking {
     public String toString () {
         return "ID Booking: " + this.getIdBooking() + "\n" +
                 "Ngày bắt đầu: " + this.getDateStart() + "\n" +
-                "Ngày kết thúc: " + this.getDateEnd() + "\n";
-    }
-
-    @Override
-    public int hashCode () {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals (Object obj) {
-        if (obj == null) {
-            return false;
-        } else {
-            Booking booking = (Booking) obj;
-            if (this.idBooking.equals(booking.getIdBooking())) {
-                return true;
-            }
-        }
-        return false;
+                "Ngày kết thúc: " + this.getDateEnd() + "\n" + "\n" +
+                "Thông tin khách hàng: " + "\n" + this.getCustomer() + "\n" +
+                "Thông tin cơ sở vật chất: " + "\n" + this.getFacility() + "\n";
     }
 }

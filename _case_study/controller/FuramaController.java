@@ -1,18 +1,19 @@
 package _case_study.controller;
 
 import _case_study.services.implements_interface.*;
+import _case_study.utils.ReadData;
 import _case_study.utils.WriteData;
 
 import java.util.Scanner;
 
 public class FuramaController {
     public static final Scanner scn = new Scanner(System.in);
-    private EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
-    private CustomerServiceImpl customerService = new CustomerServiceImpl();
-    private FacilityServiceImpl facilityService = new FacilityServiceImpl();
-    private BookingServiceImpl bookingService = new BookingServiceImpl(customerService , facilityService);
-    private ContractServiceImpl contractService = new ContractServiceImpl();
-    private PromotionServiceImpl promotionService = new PromotionServiceImpl();
+    public static EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
+    public static CustomerServiceImpl customerService = new CustomerServiceImpl();
+    public static FacilityServiceImpl facilityService = new FacilityServiceImpl();
+    public static BookingServiceImpl bookingService = new BookingServiceImpl();
+    public static ContractServiceImpl contractService = new ContractServiceImpl();
+    public static PromotionServiceImpl promotionService = new PromotionServiceImpl();
 
     public void employeeManagementMenu () {
         int choose = 0;
@@ -28,7 +29,7 @@ public class FuramaController {
                 try {
                     System.out.print("Your choose: ");
                     choose = Integer.parseInt(scn.nextLine());
-                    if (choose < 0 && choose > 4) {
+                    if (choose < 0 || choose > 4) {
                         flag = false;
                     }
                 } catch (NumberFormatException e) {
@@ -67,7 +68,7 @@ public class FuramaController {
                 try {
                     System.out.print("Your choose: ");
                     choose = Integer.parseInt(scn.nextLine());
-                    if (choose < 0 && choose > 4) {
+                    if (choose < 0 || choose > 4) {
                         flag = false;
                     }
                 } catch (NumberFormatException e) {
@@ -106,7 +107,7 @@ public class FuramaController {
                 try {
                     System.out.print("Your choose: ");
                     choose = Integer.parseInt(scn.nextLine());
-                    if (choose < 0 && choose > 4) {
+                    if (choose < 0 || choose > 4) {
                         flag = false;
                     }
                 } catch (NumberFormatException e) {
@@ -147,7 +148,7 @@ public class FuramaController {
                 try {
                     System.out.print("Your choose: ");
                     choose = Integer.parseInt(scn.nextLine());
-                    if (choose < 0 && choose > 6) {
+                    if (choose < 0 || choose > 6) {
                         flag = false;
                     }
                 } catch (NumberFormatException e) {
@@ -192,7 +193,7 @@ public class FuramaController {
                 try {
                     System.out.print("Your choose: ");
                     choose = Integer.parseInt(scn.nextLine());
-                    if (choose < 0 && choose > 3) {
+                    if (choose < 0 || choose > 3) {
                         flag = false;
                     }
                 } catch (NumberFormatException e) {
@@ -230,7 +231,7 @@ public class FuramaController {
                 try {
                     System.out.print("Your choose: ");
                     choose = Integer.parseInt(scn.nextLine());
-                    if (choose < 0 && choose > 6) {
+                    if (choose < 0 || choose > 6) {
                         flag = false;
                     }
                 } catch (NumberFormatException e) {
@@ -255,10 +256,6 @@ public class FuramaController {
                     promotionManagementMenu();
                     break;
                 case 6:
-                    WriteData writeData = new WriteData(employeeService ,
-                            customerService , facilityService ,
-                            bookingService , contractService , promotionService);
-                    writeData.writeAllData();
                     System.exit(0);
             }
         } while (true);

@@ -84,6 +84,6 @@ public class Villa extends Facility {
         return super.toString() +
                 "Diện tích hồ bơi: " + this.getAreaPool() + "\n" +
                 "Tiêu chuẩn phòng: " + this.getTypeOfRoom() + "\n" +
-                "Số tầng" + this.getNumberFloor() + "\n";
+                "Số tầng: " + this.getNumberFloor();
     }
 }

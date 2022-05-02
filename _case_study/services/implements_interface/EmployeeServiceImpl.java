@@ -1,9 +1,10 @@
 package _case_study.services.implements_interface;
 
-import _case_study.model.other_class.Booking;
 import _case_study.model.person_class.Employee;
 import _case_study.services.interface_services.EmployeeService;
 import _case_study.utils.FormatString;
+import _case_study.utils.ReadData;
+import _case_study.utils.WriteData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     public static final Scanner scn = new Scanner(System.in);
     private List<Employee> dataEmployee = new ArrayList<>();
 
+    public EmployeeServiceImpl () {
+        //Đọc dữ liệu trong employee.csv
+        this.dataEmployee = ReadData.readDataEmployee();
+    }
+
     public boolean isSameId (String id) {
         for (Employee item : dataEmployee) {
             if (item.getIdEmployee().equals(id)) return false;
@@ -21,6 +27,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public void addNew () {
+        //Đọc dữ liệu trong employee.csv
+        this.dataEmployee = ReadData.readDataEmployee();
         Employee employee = new Employee();
 
         do {
@@ -32,9 +40,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
         employee.inputData();
         dataEmployee.add(employee);
+        //Ghi dữ liệu ra file employee.csv
+        WriteData.writeDataListEmployee();
     }
 
     public void displayList () {
+        //Đọc dữ liệu trong employee.csv
+        this.dataEmployee = ReadData.readDataEmployee();
         System.out.println("------Danh sách nhân viên------");
         for (Employee item : dataEmployee) {
             System.out.println(item);
@@ -43,6 +55,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     public void editInfor () {
+        //Đọc dữ liệu trong employee.csv
+        this.dataEmployee = ReadData.readDataEmployee();
         boolean flag = true;
         System.out.print("Nhập id cần edit: ");
         String id = scn.nextLine();
@@ -51,6 +65,8 @@ public class EmployeeServiceImpl implements EmployeeService {
                 flag = false;
                 System.out.println("Nhập thông tin nhân viên: ");
                 item.inputData();
+                //Ghi dữ liệu ra file employee.csv
+                WriteData.writeDataListEmployee();
             }
         }
         if (flag) System.out.println("ID Không tìm thấy!");

@@ -3,26 +3,23 @@ package _case_study.services.implements_interface;
 import _case_study.model.facility_class.Facility;
 import _case_study.model.other_class.Booking;
 import _case_study.model.other_class.Contract;
+import _case_study.model.person_class.Customer;
 import _case_study.services.interface_services.BookingService;
 import _case_study.services.interface_services.ContactService;
 import _case_study.utils.BookingComparator;
 import _case_study.utils.FormatString;
+import _case_study.utils.ReadData;
+import _case_study.utils.WriteData;
 
+import java.awt.print.Book;
 import java.util.*;
 
 public class BookingServiceImpl implements BookingService {
     private static final Scanner scn = new Scanner(System.in);
-    private CustomerServiceImpl listCustomer = new CustomerServiceImpl();
-    private FacilityServiceImpl listFacility = new FacilityServiceImpl();
     private Set<Booking> dataBooking = new TreeSet<>(new BookingComparator());
 
     public BookingServiceImpl () {
-    }
-
-    public BookingServiceImpl (CustomerServiceImpl listCustomer ,
-                               FacilityServiceImpl listFacility) {
-        this.listCustomer = listCustomer;
-        this.listFacility = listFacility;
+        this.dataBooking = ReadData.readDataBooking();
     }
 
     public boolean isSameId (String id) {
@@ -33,6 +30,7 @@ public class BookingServiceImpl implements BookingService {
     }
 
     public Set<Booking> getDataListBooking () {
+        this.dataBooking = ReadData.readDataBooking();
         return dataBooking;
     }
 
@@ -42,6 +40,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public void addNew () {
+        this.dataBooking = ReadData.readDataBooking();
         Booking newBooking = new Booking();
         //Nhập ID Booking
         do {
@@ -50,16 +49,28 @@ public class BookingServiceImpl implements BookingService {
             newBooking.setIdBooking(scn.nextLine());
         } while (! new FormatString().code(newBooking.getIdBooking())
                 || ! isSameId(newBooking.getIdBooking()));
-        newBooking.inputData(listCustomer , listFacility);
+        newBooking.inputData();
         dataBooking.add(newBooking);
+        WriteData.writeDataListBooking();
     }
 
     @Override
     public void displayList () {
+        this.dataBooking = ReadData.readDataBooking();
         System.out.println("------Danh sách Booking------");
         for (Booking item : dataBooking) {
             System.out.println(item);
             System.out.println("-----------------------------");
         }
+    }
+
+    public Booking getBooking (String idBooking) {
+        this.dataBooking = ReadData.readDataBooking();
+        assert dataBooking != null;
+        for (Booking item : dataBooking) {
+            if (item.getIdBooking().equals(idBooking))
+                return item;
+        }
+        return null;
     }
 }

@@ -2,6 +2,8 @@ package _case_study.model.facility_class;
 
 import _case_study.utils.FormatString;
 
+import java.util.Objects;
+
 public class House extends Facility {
     private String typeOfRoom; //Tiêu chuẩn phòng
     private int numberfloor;
@@ -14,7 +16,7 @@ public class House extends Facility {
 
     public House (String idService , double area , int price ,
                   int maximumPerson , String nameService , String typeOfBorrow ,
-                  String typeOfRoom , byte numberfloor) {
+                  String typeOfRoom , int numberfloor) {
         super(idService , area , price , maximumPerson , nameService , typeOfBorrow);
         this.typeOfRoom = typeOfRoom;
         this.numberfloor = numberfloor;
@@ -61,6 +63,6 @@ public class House extends Facility {
     public String toString () {
         return super.toString() +
                 "Tiêu chuẩn phòng: " + this.getTypeOfRoom() + "\n" +
-                "Số tầng" + this.getNumberFloor() + "\n";
+                "Số tầng: " + this.getNumberFloor();
     }
 }

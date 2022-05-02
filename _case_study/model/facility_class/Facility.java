@@ -42,9 +42,9 @@ public abstract class Facility {
         //Nhập tên dịch vụ
         do {
             System.out.println("Tên dịch vụ phải viết hoa ký tự đầu và ký tự sau là thường VD: Villa");
-            System.out.println("Nhập tên dịch vụ dịch vụ: ");
+            System.out.print("Nhập tên dịch vụ dịch vụ: ");
             this.setNameService(scn.nextLine());
-        }while (! new FormatString().nameService(this.getNameService()));
+        } while (! new FormatString().nameService(this.getNameService()));
 
         //Nhập số lượng người
         do {
@@ -72,10 +72,10 @@ public abstract class Facility {
 
         //Nhập kiểu thuê
         do {
-            System.out.print("Nhập kiểu thuê (Hour, Day, Month, Year)");
+            System.out.println("Nhập kiểu thuê (Hour, Day, Month, Year)");
             System.out.println("Nhập kiểu thuê dịch vụ: ");
             this.setTypeOfBorrow(scn.nextLine());
-        }while (! new FormatString().borrowService(this.getTypeOfBorrow()));
+        } while (! new FormatString().borrowService(this.getTypeOfBorrow()));
 
         //Nhập giá
         do {
@@ -84,10 +84,10 @@ public abstract class Facility {
                 System.out.println("Giá phải lớn hơn 0");
                 System.out.print("Nhập giá: ");
                 this.setPrice(Integer.parseInt(scn.nextLine()));
-            } catch (NumberFormatException e){
+            } catch (NumberFormatException e) {
                 flagChoose = false;
             }
-        } while (!flagChoose || this.getPrice() < 0);
+        } while (! flagChoose || this.getPrice() < 0);
     }
 
     public String getIdService () {
@@ -145,13 +145,13 @@ public abstract class Facility {
                 "Giá: " + this.getPrice() + "\n" +
                 "Số người tối đa: " + this.getMaximumPerson() + "\n" +
                 "Tên dịch vụ: " + this.getNameService() + "\n" +
-                "Kiểu thuê: " + this.getTypeOfBorrow() + "\n";
+                "Kiểu thuê: " + this.getTypeOfBorrow();
     }
 
 
     @Override
     public int hashCode () {
-        return super.hashCode();
+        return (int) Math.floor((Math.random() * 9999) + 1000);
     }
 
     @Override

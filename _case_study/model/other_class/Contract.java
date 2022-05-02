@@ -30,30 +30,31 @@ public class Contract {
     }
 
     public void inputData (Booking booking) {
-        boolean flagChoose;
+        boolean flag;
+        //Lấy thông tin booking tạo contract
         this.setBooking(booking);
 
         //Nhập số tiền trả trước
         do {
-            flagChoose = true;
+            flag = true;
             try {
-                System.out.print("Nhập số tiền trả trước (lớn hơn 0)");
+                System.out.print("Nhập số tiền trả trước (lớn hơn 0): ");
                 this.setDeposit(Integer.parseInt(scn.nextLine()));
-            } catch (NumberFormatException e){
-                flagChoose = false;
+            } catch (NumberFormatException e) {
+                flag = false;
             }
-        } while (this.getDeposit() < 0 || !flagChoose);
+        } while (this.getDeposit() < 0 || ! flag);
 
         //Nhập tổng chi phí
         do {
-            flagChoose = true;
+            flag = true;
             try {
-                System.out.print("Nhập tổng số chi phí (lớn hơn 0)");
+                System.out.print("Nhập tổng số chi phí (lớn hơn 0): ");
                 this.setTotalPay(Integer.parseInt(scn.nextLine()));
-            } catch (NumberFormatException e){
-                flagChoose = false;
+            } catch (NumberFormatException e) {
+                flag = false;
             }
-        } while (this.getTotalPay() < 0 || !flagChoose);
+        } while (this.getTotalPay() < 0 || ! flag);
     }
 
     public Booking getBooking () {
@@ -90,9 +91,10 @@ public class Contract {
 
     @Override
     public String toString () {
-        return "Số hợp đồng: " + this.getNumberOfContract() + "\n" +
+        return "Thông tin Booking: " + "\n" + this.getBooking() + "\n" +
+                "Số hợp đồng: " + this.getNumberOfContract() + "\n" +
                 "Số tiền đưa trước: " + this.getDeposit() + "\n" +
-                "Tổng số tiền thanh toán: " + this.totalPay + "\n";
+                "Tổng số tiền thanh toán: " + this.totalPay;
     }
 
     @Override
