@@ -15,8 +15,6 @@ public class CustomerServiceImpl implements CustomerService {
     private List<Customer> dataCustomer = new LinkedList<>();
 
     public CustomerServiceImpl () {
-        //Đọc dữ liệu trong file customer.csv
-        this.dataCustomer = ReadData.readDataCustomer();
     }
 
     public boolean isSameId (String id) {

@@ -1,17 +1,12 @@
 package _case_study.services.implements_interface;
 
-import _case_study.model.facility_class.Facility;
 import _case_study.model.other_class.Booking;
-import _case_study.model.other_class.Contract;
-import _case_study.model.person_class.Customer;
 import _case_study.services.interface_services.BookingService;
-import _case_study.services.interface_services.ContactService;
 import _case_study.utils.BookingComparator;
 import _case_study.utils.FormatString;
 import _case_study.utils.ReadData;
 import _case_study.utils.WriteData;
 
-import java.awt.print.Book;
 import java.util.*;
 
 public class BookingServiceImpl implements BookingService {
@@ -19,7 +14,6 @@ public class BookingServiceImpl implements BookingService {
     private Set<Booking> dataBooking = new TreeSet<>(new BookingComparator());
 
     public BookingServiceImpl () {
-        this.dataBooking = ReadData.readDataBooking();
     }
 
     public boolean isSameId (String id) {
@@ -30,7 +24,6 @@ public class BookingServiceImpl implements BookingService {
     }
 
     public Set<Booking> getDataListBooking () {
-        this.dataBooking = ReadData.readDataBooking();
         return dataBooking;
     }
 
@@ -42,6 +35,7 @@ public class BookingServiceImpl implements BookingService {
     public void addNew () {
         this.dataBooking = ReadData.readDataBooking();
         Booking newBooking = new Booking();
+        String str;
         //Nhập ID Booking
         do {
             System.out.println("Định dạng BKID-xxxx (x: 0-9)");
@@ -50,6 +44,8 @@ public class BookingServiceImpl implements BookingService {
         } while (! new FormatString().code(newBooking.getIdBooking())
                 || ! isSameId(newBooking.getIdBooking()));
         newBooking.inputData();
+        str = newBooking.getFacility().getIdService().substring(0, newBooking.getFacility().getIdService().indexOf("-"));
+        if (str.equals("SVRO")) newBooking.setCreateContract(true);
         dataBooking.add(newBooking);
         WriteData.writeDataListBooking();
     }
@@ -59,8 +55,10 @@ public class BookingServiceImpl implements BookingService {
         this.dataBooking = ReadData.readDataBooking();
         System.out.println("------Danh sách Booking------");
         for (Booking item : dataBooking) {
-            System.out.println(item);
-            System.out.println("-----------------------------");
+            if (! item.isCreateContract()) {
+                System.out.println(item);
+                System.out.println("-----------------------------");
+            }
         }
     }
 

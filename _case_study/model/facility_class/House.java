@@ -62,7 +62,7 @@ public class House extends Facility {
     @Override
     public String toString () {
         return super.toString() +
-                "Tiêu chuẩn phòng: " + this.getTypeOfRoom() + "\n" +
+                "\nTiêu chuẩn phòng: " + this.getTypeOfRoom() + "\n" +
                 "Số tầng: " + this.getNumberFloor();
     }
 }

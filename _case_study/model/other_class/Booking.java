@@ -14,7 +14,7 @@ public class Booking {
     private static final Scanner scn = new Scanner(System.in);
     private String dateStart, dateEnd;
     private String idBooking;
-    private boolean isCreateContrat; // Trạng thái đã tạo hợp đồng
+    private boolean isCreateContract; // Trạng thái đã tạo hợp đồng
 
     //Customer
     private Customer customer;
@@ -28,17 +28,16 @@ public class Booking {
         this.idBooking = "";
         this.customer = null;
         this.facility = null;
-        this.isCreateContrat = false;
     }
 
     public Booking (String dateStart , String dateEnd ,
-                    String idBooking , Customer customer , Facility facility, boolean isCreateContrat) {
+                    String idBooking , Customer customer , Facility facility, boolean isCreateContract) {
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
         this.idBooking = idBooking;
         this.customer = customer;
         this.facility = facility;
-        this.isCreateContrat = isCreateContrat;
+        this.isCreateContract = isCreateContract;
     }
 
     public Customer chooseCustomer (CustomerServiceImpl customerService) {
@@ -96,14 +95,16 @@ public class Booking {
             System.out.print("Nhập ngày trả: ");
             this.setDateEnd(scn.nextLine());
         } while (! new FormatString().dateFormat(this.getDateEnd()));
+
+        this.isCreateContract = false;
     }
 
-    public boolean isCreateContrat () {
-        return isCreateContrat;
+    public boolean isCreateContract () {
+        return isCreateContract;
     }
 
-    public void setCreateContrat (boolean createContrat) {
-        isCreateContrat = createContrat;
+    public void setCreateContract (boolean createContrat) {
+        isCreateContract = createContrat;
     }
 
     public String getDateStart () {
@@ -152,6 +153,7 @@ public class Booking {
         return "ID Booking: " + this.getIdBooking() + "\n" +
                 "Ngày bắt đầu: " + this.getDateStart() + "\n" +
                 "Ngày kết thúc: " + this.getDateEnd() + "\n" + "\n" +
+                "Trạng thái tạo hợp đồng: " + this.isCreateContract() + "\n" +
                 "Thông tin khách hàng: " + "\n" + this.getCustomer() + "\n" +
                 "Thông tin cơ sở vật chất: " + "\n" + this.getFacility() + "\n";
     }

@@ -18,8 +18,6 @@ public class FacilityServiceImpl implements FacilityService {
     private Map<Facility, Integer> dataFacilityMaintenance = new LinkedHashMap<>();
 
     public FacilityServiceImpl () {
-        this.dataFacility = ReadData.readDataFacility("FILE_FACILITY");
-        this.dataFacilityMaintenance = ReadData.readDataFacility("FILE_FACILITYMAINTENANCE");
     }
 
     public boolean isSameId (String id) {

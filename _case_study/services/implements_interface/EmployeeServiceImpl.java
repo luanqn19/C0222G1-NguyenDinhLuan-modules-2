@@ -15,8 +15,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     private List<Employee> dataEmployee = new ArrayList<>();
 
     public EmployeeServiceImpl () {
-        //Đọc dữ liệu trong employee.csv
-        this.dataEmployee = ReadData.readDataEmployee();
     }
 
     public boolean isSameId (String id) {

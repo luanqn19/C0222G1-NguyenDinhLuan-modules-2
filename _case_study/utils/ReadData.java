@@ -49,7 +49,7 @@ public class ReadData {
                         obj[6] , obj[7] , obj[0] , Double.parseDouble(obj[8]) , obj[9] , obj[10]);
                 tempData.add(employee);
             }
-            System.out.println("Success read Employee");
+//            System.out.println("Success read Employee");
             bufferedReader.close();
             fileReader.close();
             return tempData;
@@ -76,7 +76,7 @@ public class ReadData {
                         obj[6] , obj[7] , obj[0] , obj[8]);
                 tempData.add(customer);
             }
-            System.out.println("Success read Customer");
+//            System.out.println("Success read Customer");
             bufferedReader.close();
             fileReader.close();
             return tempData;
@@ -117,7 +117,7 @@ public class ReadData {
                     tempData.put(facility , Integer.parseInt(obj[7]));
                 }
             }
-            System.out.println("Success read facility");
+//            System.out.println("Success read facility");
             bufferedReader.close();
             fileReader.close();
             return tempData;
@@ -145,7 +145,7 @@ public class ReadData {
                         FuramaController.facilityService.getFacility(obj[4]), Boolean.parseBoolean(obj[5]));
                 tempData.add(booking);
             }
-            System.out.println("Success read booking");
+//            System.out.println("Success read booking");
             bufferedReader.close();
             fileReader.close();
             return tempData;
@@ -169,10 +169,10 @@ public class ReadData {
             while ((str = bufferedReader.readLine()) != null && ! str.equals("")) {
                 obj = str.split(",");
                 contract = new Contract(FuramaController.bookingService.getBooking(obj[1]) , obj[0] ,
-                        Integer.parseInt(obj[2]) , Integer.parseInt(obj[3]));
+                        Integer.parseInt(obj[2]) , Integer.parseInt(obj[3]), Boolean.parseBoolean(obj[4]));
                 tempData.add(contract);
             }
-            System.out.println("Success read contract");
+//            System.out.println("Success read contract");
             bufferedReader.close();
             fileReader.close();
             return tempData;
@@ -199,7 +199,7 @@ public class ReadData {
                         Integer.parseInt(obj[1]) , obj[2]);
                 tempData.add(promotion);
             }
-            System.out.println("Success read promotion");
+//            System.out.println("Success read promotion");
             bufferedReader.close();
             fileReader.close();
             return tempData;

@@ -10,6 +10,7 @@ public class Contract {
     private String numberOfContract; // Số hợp đồng
     private int deposit; // Tiền cọc trước
     private int totalPay; // Tổng thanh toán
+    private boolean isSetVoucher;
 
     //Booking
     private Booking booking;
@@ -22,11 +23,12 @@ public class Contract {
     }
 
     public Contract (Booking booking , String numberOfContract ,
-                     int deposit , int totalPay) {
+                     int deposit , int totalPay, boolean isSetVoucher) {
         this.booking = booking;
         this.numberOfContract = numberOfContract;
         this.deposit = deposit;
         this.totalPay = totalPay;
+        this.isSetVoucher = isSetVoucher;
     }
 
     public void inputData (Booking booking) {
@@ -55,6 +57,16 @@ public class Contract {
                 flag = false;
             }
         } while (this.getTotalPay() < 0 || ! flag);
+
+        this.isSetVoucher = false;
+    }
+
+    public boolean isSetVoucher () {
+        return isSetVoucher;
+    }
+
+    public void setSetVoucher (boolean setVoucher) {
+        isSetVoucher = setVoucher;
     }
 
     public Booking getBooking () {

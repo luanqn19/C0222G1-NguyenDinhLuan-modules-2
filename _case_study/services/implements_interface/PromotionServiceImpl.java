@@ -1,5 +1,6 @@
 package _case_study.services.implements_interface;
 
+import _case_study.controller.FuramaController;
 import _case_study.model.other_class.Contract;
 import _case_study.model.other_class.Promotion;
 import _case_study.services.interface_services.PromotionService;
@@ -28,13 +29,19 @@ public class PromotionServiceImpl implements PromotionService {
             promotion = new Promotion();
             System.out.println("Contract Info: ");
             System.out.println(item);
-            promotion.inputData(item);
-            dataTemp.add(promotion);
+            if (! item.isSetVoucher()) {
+                promotion.inputData(item);
+                dataTemp.add(promotion);
+                item.setSetVoucher(true);
+            }
         }
 
         // Nhập thông tin voucher
         inputVoucher(dataTemp);
         System.out.println("Success");
+        FuramaController.contractService.setDataListContract(dataTempContract);
+        // Ghi file ra contract.csv
+        WriteData.writeDataListContract();
     }
 
     public void inputVoucher (Set<Promotion> dataSet) {

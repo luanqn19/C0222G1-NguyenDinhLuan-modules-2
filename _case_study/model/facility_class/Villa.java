@@ -82,7 +82,7 @@ public class Villa extends Facility {
     @Override
     public String toString () {
         return super.toString() +
-                "Diện tích hồ bơi: " + this.getAreaPool() + "\n" +
+                "\nDiện tích hồ bơi: " + this.getAreaPool() + "\n" +
                 "Tiêu chuẩn phòng: " + this.getTypeOfRoom() + "\n" +
                 "Số tầng: " + this.getNumberFloor();
     }

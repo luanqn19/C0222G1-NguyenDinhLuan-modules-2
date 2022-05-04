@@ -10,7 +10,6 @@ import _case_study.model.other_class.Contract;
 import _case_study.model.other_class.Promotion;
 import _case_study.model.person_class.Customer;
 import _case_study.model.person_class.Employee;
-import _case_study.services.implements_interface.*;
 
 import java.io.*;
 import java.util.Map;
@@ -53,7 +52,7 @@ public class WriteData {
                 bufferedWriter.newLine();
                 str = "";
             }
-            System.out.println("Success write Employee");
+//            System.out.println("Success write Employee");
             bufferedWriter.flush();
             bufferedWriter.close();
             fileWriter.close();
@@ -80,7 +79,7 @@ public class WriteData {
                 bufferedWriter.newLine();
                 str = "";
             }
-            System.out.println("Success write Customer");
+//            System.out.println("Success write Customer");
             bufferedWriter.flush();
             bufferedWriter.close();
             fileWriter.close();
@@ -113,7 +112,7 @@ public class WriteData {
                 bufferedWriter.newLine();
                 str = "";
             }
-            System.out.println("Success write Facility");
+//            System.out.println("Success write Facility");
             bufferedWriter.flush();
             bufferedWriter.close();
             fileWriter.close();
@@ -133,12 +132,12 @@ public class WriteData {
             for (Booking item : FuramaController.bookingService.getDataListBooking()) {
                 str += item.getIdBooking() + "," + item.getDateStart() + "," +
                         item.getDateEnd() + "," + item.getCustomer().getIdCustomer() + "," +
-                        item.getFacility().getIdService() + "," + item.isCreateContrat();
+                        item.getFacility().getIdService() + "," + item.isCreateContract();
                 bufferedWriter.write(str);
                 bufferedWriter.newLine();
                 str = "";
             }
-            System.out.println("Success write Booking");
+//            System.out.println("Success write Booking");
             bufferedWriter.flush();
             bufferedWriter.close();
             fileWriter.close();
@@ -157,12 +156,12 @@ public class WriteData {
             String str = "";
             for (Contract item : FuramaController.contractService.getDataListContract()) {
                 str += item.getNumberOfContract() + "," + item.getBooking().getIdBooking() + "," +
-                        item.getDeposit() + "," + item.getTotalPay();
+                        item.getDeposit() + "," + item.getTotalPay()  + "," + item.isSetVoucher();
                 bufferedWriter.write(str);
                 bufferedWriter.newLine();
                 str = "";
             }
-            System.out.println("Success write Contract");
+//            System.out.println("Success write Contract");
             bufferedWriter.flush();
             bufferedWriter.close();
             fileWriter.close();
@@ -186,7 +185,7 @@ public class WriteData {
                 bufferedWriter.newLine();
                 str = "";
             }
-            System.out.println("Success write Promotion");
+//            System.out.println("Success write Promotion");
             bufferedWriter.flush();
             bufferedWriter.close();
             fileWriter.close();

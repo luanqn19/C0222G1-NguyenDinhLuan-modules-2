@@ -31,7 +31,6 @@ public class Room extends Facility {
 
     @Override
     public String toString () {
-        return super.toString() +
-                "Dịch vụ đi kèm: " + this.getFreeService() + "\n";
+        return super.toString() + "\nDịch vụ đi kèm: " + this.getFreeService();
     }
 }

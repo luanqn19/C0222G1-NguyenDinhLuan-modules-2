@@ -15,11 +15,9 @@ import java.util.*;
 public class ContractServiceImpl implements ContactService {
     private static final Scanner scn = new Scanner(System.in);
     private List<Contract> dataContract = new ArrayList<>();
-    private Set<Booking> dataBooking;
+    private Set<Booking> dataBooking = FuramaController.bookingService.getDataListBooking();
 
     public ContractServiceImpl () {
-        this.dataBooking = FuramaController.bookingService.getDataListBooking();
-        this.dataContract = ReadData.readDataContract();
     }
 
     //Kiểm tra trùng số hợp đồng
@@ -40,9 +38,10 @@ public class ContractServiceImpl implements ContactService {
 
         for (Map.Entry<Facility, Integer> entry : FuramaController.facilityService.getDataFacility().entrySet()) {
             flag = false;
-            for (Contract item : dataContract) {
-                facility = item.getBooking().getFacility();
-                if (entry.getKey().getIdService().equals(facility.getIdService())) {
+            for (Booking item : dataBooking) {
+                facility = item.getFacility();
+                if (entry.getKey().getIdService().equals(facility.getIdService()) &&
+                item.isCreateContract()) {
                     flag = true;
                     temp.put(facility , entry.getValue() + 1);
                     break;
@@ -81,19 +80,19 @@ public class ContractServiceImpl implements ContactService {
         //Đọc file contract trước khi thêm mới
         this.dataContract = ReadData.readDataContract();
         //Đọc file promotion trước khi thêm mới contract
-        FuramaController.promotionService.setDataPromotion(FuramaController.promotionService.getDataListPromotion());
+        FuramaController.promotionService.setDataPromotion(ReadData.readDataPromotion());
 
         Queue<Booking> bookingQueue = new LinkedList<>();
-        if (dataBooking.isEmpty()) {
-            System.out.println("Danh sách booking rỗng");
-            return;
-        } else {
-            //Tạo queue booking
-            for (Booking item : dataBooking) {
-                if (!item.isCreateContrat())
-                    bookingQueue.add(item);
+        //Tạo queue booking
+        for (Booking item : dataBooking) {
+            if (! item.isCreateContract()) {
+                // Điều chỉnh trạng thái tạo contract cho booking
+                item.setCreateContract(true);
+                bookingQueue.add(item);
             }
         }
+        FuramaController.bookingService.setDataListBooking(dataBooking);
+        WriteData.writeDataListBooking();
 
         Booking booking;
         Customer customer;
@@ -105,8 +104,6 @@ public class ContractServiceImpl implements ContactService {
             customer = booking.getCustomer();
             System.out.println("Đang tạo hợp đồng booking infor: \n" + booking);
             System.out.println("Đang tạo hợp đồng khác hàng: \n" + customer);
-            // Điều chỉnh trạng thái tạo contract cho booking
-            booking.setCreateContrat(true);
             //Tạo contract rỗng để tiến hành set thông tin
             Contract contract = new Contract();
             //Tạo contract mới
